@@ -1,11 +1,11 @@
 ﻿using Backend.Models;
 
-namespace Backend.UserRepository
+namespace Backend.Handlers
 {
-    public class UserRepository
+    public class UserHandler
     {
-        private readonly ILogger<UserRepository> _logger;
-        public UserRepository(ILogger<UserRepository> logger) 
+        private readonly ILogger<UserHandler> _logger;
+        public UserHandler(ILogger<UserHandler> logger) 
         { 
             _logger = logger;
         }

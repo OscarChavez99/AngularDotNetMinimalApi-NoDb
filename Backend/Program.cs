@@ -1,5 +1,5 @@
 using Backend.Api;
-using Backend.UserRepository;
+using Backend.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ builder.Services.AddCors(options =>
 });
 
 // Dependency injection for UserRepository
-builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<UserHandler>();
 
 // Add services to the container.
 
