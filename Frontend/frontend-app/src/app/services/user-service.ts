@@ -10,7 +10,7 @@ export class UserService {
   
   constructor (private httpClient: HttpClient) {}
 
-  apiUrl: string = "https";
+  apiUrl: string = "https://localhost:44399/";
   apiName: string = "users";
 
   getUsers(): Observable<User[]>{
