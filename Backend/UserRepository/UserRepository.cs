@@ -2,9 +2,15 @@
 
 namespace Backend.UserRepository
 {
-    public static class UserRepository
+    public class UserRepository
     {
-        public static List<User> GetUsers()
+        private readonly ILogger<UserRepository> _logger;
+        public UserRepository(ILogger<UserRepository> logger) 
+        { 
+            _logger = logger;
+        }
+
+        public List<User> GetUsers()
         {
             List<User> users =
             [
@@ -12,14 +18,16 @@ namespace Backend.UserRepository
                 new User {Id = 2, Name = "Fabian"},
             ];
 
+            _logger.LogInformation("GetUsers returning {Count} users", users.Count);
+
             return users;
         }
 
-        public static User AddUser(User user)
+        public User AddUser(User user)
         {
             // In a real implementation, you would save the user to a database and return the saved user with an assigned Id.
             // For this example, we will just return the user
-            Console.WriteLine($"Adding user: {user.Name}");
+            _logger.LogInformation("Adding user: {Name} with ID {Id}", user.Name, user.Id);
             return user;
         }
     }

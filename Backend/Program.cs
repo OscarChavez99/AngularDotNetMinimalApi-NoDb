@@ -1,5 +1,5 @@
+using Backend.Api;
 using Backend.UserRepository;
-using Backend.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,25 +15,17 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Dependency injection for UserRepository
+builder.Services.AddScoped<UserRepository>();
+
 // Add services to the container.
 
 var app = builder.Build();
+// Map API endpoints
+Routes.MapEndpoints(app);
 
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
 app.UseCors();
-
-app.MapGet("users", () => 
-{
-    var users = UserRepository.GetUsers();
-    return Results.Ok(users);
-});
-
-app.MapPost("users", (User user) =>
-{
-    var createdUser = UserRepository.AddUser(user);
-    return Results.Created($"/users/{createdUser.Id}", createdUser);
-});
-
 app.Run();
